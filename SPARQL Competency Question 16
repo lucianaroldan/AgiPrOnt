@@ -1,0 +1,18 @@
+# Competency Question 16
+# What are the practices that were adopted by a given agile profile
+
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX ag:   <http://www.semanticweb.org/utn/AgileOntology#>
+
+SELECT  ?profile  ?practice WHERE
+{    	?profile rdf:type ag:AgileProfile .
+  		?apr rdf:type ag:AdoptsPracticeRelation .
+		?p rdfs:subClassOf*  ag:AgilePractice .
+        ?profile ag:profileAdoptsPractice ?apr .
+    	?apr  ag:adoptedPractice ?practice .
+  		?practice rdf:type ?p . 
+Filter (?profile = <http://www.semanticweb.org/utn/AgileOntology#Geniar>)
+}

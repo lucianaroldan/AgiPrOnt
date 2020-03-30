@@ -1,0 +1,18 @@
+# The agiles practices “ShortReleases” and “Prototyping” 
+# practices can be recommended if the degree of innovation of the project is advanced
+# The agile practice is recommended if any results are obtained from this query
+
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX ag:   <http://www.semanticweb.org/utn/AgileOntology#>
+SELECT ?profile ?value
+WHERE {
+?profile rdf:type ag:TargetAgileProfile ;
+         	ag:hasProject ?project .
+?project   ag:hasProjectCharacteristic ?projch .
+?projch rdf:type ag:DegreeOfInnovation ;
+        	ag:hasValue ?value .
+Filter (?value != <http://www.semanticweb.org/utn/AgileOntology#advanced>)
+}

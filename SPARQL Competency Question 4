@@ -1,0 +1,23 @@
+# Competency Question 4
+# Who are the team members of an Agile Software Development project
+
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX ag:   <http://www.semanticweb.org/utn/AgileOntology#>
+PREFIX type: <http://info.deepcarbon.net/schema/type#>
+
+SELECT ?project ?teamMember ?role
+WHERE {
+  ?profile rdf:type ag:AgileProfile .
+  ?project rdf:type ag:AgileProject .
+  ?team rdf:type ag:AgileTeam .
+  ?teamMember rdf:type ag:TeamMember .
+  ?role rdf:type ag:Role .
+  ?profile ag:hasProject ?project .
+  ?profile ag:hasTeam ?team .
+  ?team ag:hasMember ?role .
+  ?role ag:hasRole ?teamMember .
+# Filter (?project = <http://www.semanticweb.org/utn/AgileOntology#AgileProfile_10Project10>)
+}

@@ -1,0 +1,34 @@
+# If the TargetAgileProfile adopted the practice "Continuous Integration",
+# it should be also be recommended the practice "AutomatedTest".
+# The agile practice is recommended if any results are obtained from this query
+
+# If the query is performed only on asserted axioms
+
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX ag:   <http://www.semanticweb.org/utn/AgileOntology#>
+SELECT ?profile ?practice
+WHERE {
+?profile rdf:type ag:TargetAgileProfile .
+?practice rdf:type ag:ContinuousIntegration .
+?apr rdf:type ag:AdoptsPracticeRelation .
+?profile ag:profileAdoptsPractice ?apr .
+?apr  ag:adoptedPractice ?practice . 
+}
+
+# If the query is performed on inferred axioms 
+# This is possible working with a reasoner and the "Snap SPARQL query" plugin
+
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX ag:   <http://www.semanticweb.org/utn/AgileOntology#>
+SELECT ?profile ?practice
+WHERE {
+?profile rdf:type ag:TargetAgileProfile .
+?practice rdf:type ag:ContinuousIntegration .
+?profile ag:infAdoptsPractice ?practice . 
+}

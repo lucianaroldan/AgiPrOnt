@@ -1,0 +1,43 @@
+# The agile practice "Personal Maps" can be recommended if any results
+# are obtained from this query
+
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX ag:   <http://www.semanticweb.org/utn/AgileOntology#>
+
+SELECT * WHERE{
+{    	?profile rdf:type ag:TargetAgileProfile ;
+                       ag:hasTeam ?team .
+    	?team   ag:hasTeamCharacteristic ?teamch .
+    	?teamch rdf:type ag:TeamTurnover;
+                      ag:hasValue ?value
+Filter (?value = <http://www.semanticweb.org/utn/AgileOntology#mediumRate>    
+      ||?value = <http://www.semanticweb.org/utn/AgileOntology#mediumToHigh> 
+      ||?value = <http://www.semanticweb.org/utn/AgileOntology#hightRate>)
+}
+UNION{
+    ?profile rdf:type ag:TargetAgileProfile ;
+                       ag:hasTeam ?team .
+    ?team   ag:hasTeamCharacteristic ?teamch .
+    ?teamch rdf:type ag:TeamPreviousCooperation;
+                      ag:hasValue ?value
+Filter (?value = <http://www.semanticweb.org/utn/AgileOntology#never> 
+	||  ?value = <http://www.semanticweb.org/utn/AgileOntology#1Project>)}
+UNION{
+    	?profile rdf:type ag:TargetAgileProfile ;
+                       ag:hasTeam ?team .
+    	?team   ag:hasTeamCharacteristic ?teamch .
+    	?teamch rdf:type ag:TeamProcessKnowledge;
+                          ag:hasValue ?value
+Filter (?value = <http://www.semanticweb.org/utn/AgileOntology#lowExperience>     
+     || ?value = <http://www.semanticweb.org/utn/AgileOntology#low-to-acceptable>)}
+UNION{
+    ?profile rdf:type ag:TargetAgileProfile ;
+                       ag:hasTeam ?team .
+    ?team   ag:hasTeamCharacteristic ?teamch .
+    ?teamch rdf:type ag:TeamTechnologyKnowledge;
+                      ag:hasValue ?value
+Filter (?value=<http://www.semanticweb.org/utn/AgileOntology#lowExperience>
+	   ||?value = <http://www.semanticweb.org/utn/AgileOntology#low-to-acceptable>)}}

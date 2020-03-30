@@ -1,0 +1,26 @@
+# Competency Question 7
+# What kinds of relationships exist between different agile practices?
+
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX ag:   <http://www.semanticweb.org/utn/AgileOntology#>
+
+SELECT  ?relationtype
+WHERE {
+  ?relationtype rdfs:subPropertyOf  ag:isRelatedToPractice .
+}
+
+# What alias relationships exist between different agile practices?
+
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX ag:   <http://www.semanticweb.org/utn/AgileOntology#>
+
+SELECT  ?practice1 ?practice2
+WHERE {
+  ?practice1 ag:alsoKnownAs  ?practice2 .
+}
